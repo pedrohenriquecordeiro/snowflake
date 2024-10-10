@@ -1,4 +1,3 @@
-
 -- In Snowflake, COPY INTO is a command used to load data into a table from an external stage or unload data from a table to an external stage. 
 -- It specifies the data source, file format, and error handling options for importing or exporting data, 
 -- making it a key part of managing data transfers between Snowflake and external storage systems.
