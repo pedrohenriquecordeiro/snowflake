@@ -10,3 +10,4 @@ SELECT
 FROM 
     @my_external_stage
     (FILE_FORMAT => 'my_csv_format');
+
