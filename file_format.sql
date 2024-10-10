@@ -17,3 +17,19 @@ DATE_FORMAT = 'AUTO'                          -- Automatically detects date form
 TIMESTAMP_FORMAT = 'AUTO'                     -- Automatically detects timestamp format based on file content
 ENCODING = 'UTF8'                             -- Specifies UTF8 encoding for the file
 COMPRESSION = 'AUTO';                         -- Automatically detects file compression type (e.g., gzip, bz2)
+
+---------------------------------------------------------------------------------------------------------------
+
+-- 1. Describing a file format to view its properties
+DESCRIBE FILE FORMAT my_csv_format;
+
+-- 2. Listing all file formats in the current schema
+SHOW FILE FORMATS;
+
+-- 3. Altering an existing file format (e.g., changing field delimiter)
+ALTER FILE FORMAT my_csv_format 
+SET FIELD_DELIMITER = ',',
+    COMMENT = 'Updated CSV file format with comma delimiter';
+
+-- 4. Dropping the JSON file format
+DROP FILE FORMAT IF EXISTS my_json_format;
