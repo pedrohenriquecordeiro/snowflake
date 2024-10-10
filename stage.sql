@@ -1,4 +1,3 @@
-
 -- In Snowflake, a stage is a location used to store data files temporarily before loading them into tables or after unloading data. 
 -- Stages can be internal (within Snowflake) or external (cloud storage like AWS S3, Azure Blob, or Google Cloud Storage). 
 -- It acts as an intermediary for data ingestion or export.
