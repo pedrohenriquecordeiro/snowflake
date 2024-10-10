@@ -1,4 +1,3 @@
-
 -- In Snowflake, storage integration is a configuration that securely connects Snowflake to external cloud storage, like AWS S3, Azure Blob Storage, or Google Cloud Storage. 
 -- It enables Snowflake to access and load data directly from these external storage systems while managing permissions and security.
 
