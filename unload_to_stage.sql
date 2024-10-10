@@ -1,4 +1,3 @@
-
 -- In Snowflake, unloading refers to the process of exporting data from a Snowflake table to an external stage (such as AWS S3, Azure Blob, or Google Cloud Storage). 
 -- This allows you to move data out of Snowflake in a structured format (like CSV, JSON, or Parquet) for backup, sharing, or further processing outside of Snowflake. 
 -- The COPY INTO command is used for unloading data.
