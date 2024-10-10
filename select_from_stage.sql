@@ -1,4 +1,3 @@
-
 SELECT
     TRY_CAST(TRIM($1) AS VARCHAR(100)) AS first_name,      -- Trim and try to cast the first attribute to VARCHAR
     TRY_CAST(TRIM($2) AS VARCHAR(100)) AS last_name,       -- Trim and try to cast the second attribute to VARCHAR
