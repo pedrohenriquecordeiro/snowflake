@@ -22,32 +22,18 @@ VALIDATION_MODE = RETURN_ERRORS                       -- Only validate files, re
 CREDENTIALS = (AWS_KEY_ID = 'your-aws-key-id', AWS_SECRET_KEY = 'your-secret-key'); -- Provide credentials if required
 
 
--- Basic COPY INTO to unload data from a table into an external stage
-COPY INTO @my_external_stage/unload_directory/
-FROM my_table
-FILE_FORMAT = (FORMAT_NAME = 'my_csv_format');
-
-
--- Unloading data with additional options
-COPY INTO @my_external_stage/unload_directory/
-FROM my_table
+-- Loading data into the target table with data transformations
+COPY INTO my_table
+FROM (
+    SELECT
+        TRY_CAST(TRIM($1) AS VARCHAR(100)) AS first_name,   -- Trim and cast the first column to VARCHAR
+        TRY_CAST(TRIM($2) AS VARCHAR(100)) AS last_name,    -- Trim and cast the second column to VARCHAR
+        TRY_CAST(TRIM($3) AS DATE) AS birth_date,           -- Trim and cast the third column to DATE
+        TRY_CAST(TRIM($4) AS INTEGER) AS age,               -- Trim and cast the fourth column to INTEGER
+        TRY_CAST(TRIM($5) AS DECIMAL(10, 2)) AS salary,     -- Trim and cast the fifth column to DECIMAL
+        TRY_CAST(TRIM($6) AS BOOLEAN) AS is_active          -- Trim and cast the sixth column to BOOLEAN
+    FROM @my_external_stage
+    (FILE_FORMAT => 'my_csv_format')
+)
 FILE_FORMAT = (FORMAT_NAME = 'my_csv_format')
-HEADER = TRUE                                          -- Include headers in the unloaded CSV files
-OVERWRITE = TRUE                                       -- Overwrite existing files in the stage
-PARTITION_BY = TO_CHAR(current_date, 'YYYY-MM-DD')     -- Partition the output by date
-INCLUDE_QUERY_ID = TRUE                                -- Add the query ID to the output file names
-SINGLE = FALSE                                         -- Split data into multiple files (default is multiple)
-MAX_FILES = 10                                         -- Limit the number of output files to 10
-CREDENTIALS = (AWS_KEY_ID = 'your-aws-key-id', AWS_SECRET_KEY = 'your-secret-key'); -- Provide credentials if needed
-
-
--- Unloading a subset of data from a table to an external stage using a SELECT statement
-COPY INTO @my_external_stage/unload_directory/
-FROM (SELECT column1, column2, column3 
-      FROM my_table
-      WHERE column1 > 100)                   -- Only unload rows where column1 is greater than 100
-FILE_FORMAT = (FORMAT_NAME = 'my_csv_format')
-HEADER = TRUE                                -- Include headers in the exported CSV files
-OVERWRITE = TRUE;                            -- Overwrite any existing files in the stage
-
-
+ON_ERROR = 'CONTINUE';    -- Continue loading even if some rows contain errors
