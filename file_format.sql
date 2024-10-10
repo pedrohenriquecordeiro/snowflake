@@ -1,4 +1,3 @@
-
 -- In Snowflake, a file format is a configuration that defines how data is read from external files (e.g., CSV, JSON, Parquet). 
 -- It specifies options like delimiters, encoding and  compression, allowing Snowflake to correctly parse and load the file data.
 
