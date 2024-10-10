@@ -1,4 +1,3 @@
-
 -- In Snowflake, a pipe is a database object used for continuous data loading. 
 -- It automates the process of loading data from an external stage (like AWS S3 or Azure Blob) into a Snowflake table using Snowpipe. 
 -- Pipes monitor new files in the stage and load them into the table as soon as they are available, providing real-time or near-real-time data ingestion.
